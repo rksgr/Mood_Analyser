@@ -3,10 +3,37 @@ import java.util.regex.Pattern;
 
 
 public class MoodAnalyser {
+    private static String message;
+
+    // Default constructor (no arguments)
+    public MoodAnalyser(){}
+
+    // Parameterised constructor (Message as argument)
+    public MoodAnalyser(String message){
+        this.message = message;
+    }
+
     /*
     Use Case 1: Ability to analyse and respond Happy or sad mood given a message
      */
     public static String analyseMood(String message){
+        String mood = "";
+        Pattern pattern1 = Pattern.compile("[H][a][p][p][y]");
+        Pattern pattern2 = Pattern.compile("[S][a][d]");
+        Matcher matcher1 = pattern1.matcher(message);
+        Matcher matcher2 = pattern2.matcher(message);
+        if (matcher1.find()){
+            mood = "Happy";
+        } else if (matcher2.find()){
+            mood = "Sad";
+        }
+        return mood;
+    }
+    /*
+    Use Case 1 refactored: Ability to analyse and respond Happy or sad mood given a message
+                            Mood message in constructor
+     */
+    public static String analyseMood(){
         String mood = "";
         Pattern pattern1 = Pattern.compile("[H][a][p][p][y]");
         Pattern pattern2 = Pattern.compile("[S][a][d]");
