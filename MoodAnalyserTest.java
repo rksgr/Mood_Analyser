@@ -1,5 +1,6 @@
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 
 public class MoodAnalyserTest {
     /*
@@ -50,4 +51,36 @@ public class MoodAnalyserTest {
         Assert.assertEquals("Happy",mood);
     }
 
+    /*
+    Test Case 3.1: Given Null mood should throw MoodAnalysisException
+     */
+    @Test
+    public void givenNullMoodShouldThrowMoodAnalysisException(){
+        MoodAnalyser moodAnalyser = new MoodAnalyser(null);
+        String mood = null;
+        try {
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(MoodAnalysisException.class);
+            mood = moodAnalyser.analyseMoodThrowCustomExcept();
+            Assert.assertEquals("Happy",mood);
+        } catch (MoodAnalysisException e) {
+            e.printStackTrace();
+        }
+    }
+    /*
+    Test Case 3.2: Given Empty mood should throw MoodAnalysisException
+     */
+    @Test
+    public void givenEmptyMoodShouldThrowMoodAnalysisException(){
+        MoodAnalyser moodAnalyser = new MoodAnalyser("");
+        String mood = null;
+        try {
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(MoodAnalysisException.class);
+            mood = moodAnalyser.analyseMoodThrowCustomExcept();
+            Assert.assertEquals("Happy",mood);
+        } catch (MoodAnalysisException e) {
+            e.printStackTrace();
+        }
+    }
 }
